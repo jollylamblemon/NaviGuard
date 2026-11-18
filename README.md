@@ -11,7 +11,7 @@ A lightweight local shield to block Nintendo update nags and telemetry for Switc
 
 ## Overview
 
-**NaviGuard** eliminates persistent system and game update prompts (the \'Super Nag\') and blocks telemetry traffic between consoles and Nintendo servers without depending on third-party public DNS servers.
+**NaviGuard** eliminates persistent system and game update prompts (the 'Super Nag') and blocks telemetry traffic between consoles and Nintendo servers without depending on third-party public DNS servers.
 
 It runs locally on your Windows PC, answering console connection tests directly so your console reports **Connected to the Internet** while remaining safely isolated.
 
@@ -33,20 +33,20 @@ It runs locally on your Windows PC, answering console connection tests directly 
 
 Provides complete isolation with zero risk of DNS leak or hardcoded IP bypass.
 
-1. **Connect:** Plug an Ethernet cable from your PC\'s Ethernet port into a **LAN port** on a spare Wi-Fi router. Leave the router\'s **INTERNET / WAN** port empty.
+1. **Connect:** Plug an Ethernet cable from your PC's Ethernet port into a **LAN port** on a spare Wi-Fi router. Leave the router's **INTERNET / WAN** port empty.
 2. **Disable Router DHCP:** Open the spare router admin settings in your browser and disable its DHCP server.
 3. **Start NaviGuard:** Launch **NaviGuard.exe**, click **Set up this PC (admin)**, choose **Offline** mode, and click **Start**.
-4. **Connect Console:** On your Switch, connect to the spare router\'s Wi-Fi network. Leave all IP and DNS settings on **Automatic**.
+4. **Connect Console:** On your Switch, connect to the spare router's Wi-Fi network. Leave all IP and DNS settings on **Automatic**.
 
 ### Method 2: Home Wi-Fi (Manual DNS)
 
 Uses your existing Wi-Fi network without requiring extra hardware.
 
 1. Launch **NaviGuard.exe**, select **Home Wi-Fi (manual DNS)**, choose your mode, and click **Start**.
-2. Note the IP address displayed in NaviGuard (your PC\'s Wi-Fi IP).
+2. Note the IP address displayed in NaviGuard (your PC's Wi-Fi IP).
 3. On your Switch:
    - Go to System Settings -> Internet -> Internet Settings -> [Your Wi-Fi] -> Change Settings -> DNS Settings -> Manual.
-   - Set **both** Primary DNS and Secondary DNS to your PC\'s IP address.
+   - Set **both** Primary DNS and Secondary DNS to your PC's IP address.
 
 ---
 
@@ -59,9 +59,9 @@ Uses your existing Wi-Fi network without requiring extra hardware.
 
 ## Configuration
 
-Custom domain lists can be placed in the same folder as NaviGuard.exe:
-- locklist.txt: Additional domains to block.
-- llowlist.txt: Domains permitted to bypass blocking in *Block Nintendo Only* mode.
+Custom domain lists can be placed in the same folder as `NaviGuard.exe`:
+- `blocklist.txt`: Additional domains to block.
+- `allowlist.txt`: Domains permitted to bypass blocking in *Block Nintendo Only* mode.
 
 ---
 
@@ -72,18 +72,17 @@ Custom domain lists can be placed in the same folder as NaviGuard.exe:
 - Python 3.8 or higher
 
 ### Run Directly
-`cmd
+```cmd
 git clone https://github.com/jollylamblemon/NaviGuard.git
 cd NaviGuard
 python src\gui.py
-`
+```
 
 ### Build Standalone Executable
-Run the build script to compile 
-elease\NaviGuard.exe:
-`cmd
+Run the build script to compile `release\NaviGuard.exe`:
+```cmd
 build.bat
-`
+```
 
 ---
 
