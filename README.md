@@ -65,6 +65,38 @@ Custom domain lists can be placed in the same folder as `NaviGuard.exe`:
 
 ---
 
+## Troubleshooting
+
+If NaviGuard shows **Running** but your console cannot connect, fails connection tests, or NaviGuard will not start, check the most common causes below:
+
+### 1. Windows Firewall is Blocking the Console (Most Common)
+- **Symptom:** NaviGuard is running, but the Switch cannot get an IP address or fails DNS lookups.
+- **Cause:** Windows Firewall often classifies the offline spare-router Ethernet connection as an **Unidentified / Public network** and silently blocks inbound traffic (DNS port 53, DHCP port 67, and HTTP port 80).
+- **Fix:** In Windows Defender Firewall (or third-party security software like Norton or Bitdefender), ensure `NaviGuard.exe` is allowed on **both Private and Public networks**.
+
+### 2. Port Conflicts (Port 53 or Port 80 in Use)
+- **Port 53 (DNS):** If NaviGuard fails to start with a port 53 error, another background service is using it. Common culprits include **WSL2 / Docker Desktop**, **Hyper-V**, **Windows Mobile Hotspot**, **Internet Connection Sharing (ICS)**, or local DNS tools (such as AdGuard or Pi-hole). Close Docker/WSL or turn off Mobile Hotspot while using NaviGuard.
+- **Port 80 (Connection Test):** If a local web server (such as **IIS**, **XAMPP**, or **Skype**) occupies port 80, NaviGuard cannot answer Nintendo's connection test. The Switch will report that it cannot connect to the internet. Close local web servers before starting NaviGuard.
+
+### 3. Spare Router (Automatic Setup) Issues
+- **Cable Port:** Ensure the Ethernet cable connects from your PC to a numbered **LAN port** on the spare router. Do **not** plug it into the WAN / Internet port.
+- **Disable Router DHCP:** Make sure the spare router's built-in DHCP server is turned off in its admin settings so NaviGuard can assign IP and DNS settings directly to your console.
+- **Mode Selection:** Do not use **Block Nintendo Only** with the spare router setup; the spare router has no internet connection, so other websites will not load. Use **Offline** mode instead.
+- **Restoring Normal PC Internet:** When plugging your PC's Ethernet cable back into your normal home router, click **Undo PC setup** in NaviGuard first so Windows restores automatic (DHCP) network settings.
+
+### 4. Home Wi-Fi (Manual DNS) Issues
+- **Both DNS Fields Required:** You must set **both Primary and Secondary DNS** on the Switch to your PC's Wi-Fi IP address. Never leave Secondary DNS blank or set to a public server (like `8.8.8.8`), or requests will bypass NaviGuard.
+- **PC IP Changed:** If your PC restarts or reconnects, your home router may assign it a new local IP. Update the DNS fields on the Switch with the new IP shown in NaviGuard.
+- **Client / AP Isolation:** If your Wi-Fi is a "Guest Network" or has **AP/Client Isolation** enabled, the router blocks devices from talking to each other. Ensure your PC and Switch are on the main Wi-Fi network.
+
+### 5. General Tips
+- **Minimizing vs Closing:** Clicking the **X** button completely closes NaviGuard. To keep it running in the background while playing, **minimize** the window so it sits in your Windows system tray.
+- **PC Sleep Mode:** Ensure your PC does not go to sleep while in use, as network protection stops when the PC sleeps.
+- **Extract Before Running:** Always extract the downloaded `.zip` file completely before launching `NaviGuard.exe`.
+- **Antivirus / SmartScreen Warnings:** Because NaviGuard adjusts local network adapters and runs without a commercial digital signature, Windows SmartScreen or antivirus tools may flag it. Click *More info* → *Run anyway*.
+
+---
+
 ## Building from Source
 
 ### Requirements
