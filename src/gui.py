@@ -271,7 +271,7 @@ class App:
                                     "'connected' but can't reach anything.", None),
                 (core.MODE_BLOCK_NINTENDO, "Only Nintendo is blocked, other sites work. "
                                            "Needs real internet (Home Wi-Fi).",
-                 "⚠ Less safe: a game or app that skips DNS or uses a domain not on the "
+                 "Notice: A game or app that skips DNS or uses a domain not on the "
                  "list could still reach Nintendo.")):
             b = ttk.Radiobutton(c, text=core.MODE_LABELS[m], value=m, variable=self.mode)
             b.pack(anchor="w")
@@ -344,7 +344,7 @@ class App:
                   text="DNS only - no DHCP, no router or PC changes needed.")).pack(
             anchor="w", pady=(4, 0))
         self.wrap(ttk.Label(self.home_panel, style="Warn.TLabel", wraplength=480, justify="left",
-                  text="⚠ Less safe than the spare router: apps that skip DNS can still get "
+                  text="Notice: Less safe than the spare router: apps that skip DNS can still get "
                        "out. Not plug and play: if this PC's address changes, update the "
                        "console's DNS (tip: add a DHCP reservation for this PC in your home "
                        "router).")).pack(anchor="w")
@@ -440,7 +440,7 @@ class App:
     def update_checklist(self):
         a = self.current_adapter()
         if not a:
-            self.set_check("cable", "bad", "No wired adapter is connected - plug the cable in, then ↻")
+            self.set_check("cable", "bad", "No wired adapter is connected - plug the cable in, then refresh")
             self.set_check("fixed", "todo", "PC has a fixed address on the router network")
             self.set_check("dhcp", "todo", "Router's own DHCP is off (checked when you press Start)")
             return
